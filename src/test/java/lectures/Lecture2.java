@@ -1,6 +1,7 @@
 package lectures;
 
 import beans.Person;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.stream.IntStream;
 import mockdata.MockData;
@@ -10,13 +11,23 @@ public class Lecture2 {
 
   @Test
   public void range() throws Exception {
+    System.out.println("Exclusive");
+    IntStream.range(0, 10).forEach(System.out::println);
+    System.out.println("Inclusive");
+    IntStream.rangeClosed(0, 10).forEach(System.out::println);
 
   }
 
   @Test
   public void rangeIteratingLists() throws Exception {
     List<Person> people = MockData.getPeople();
+    IntStream.range(0, people.size())
+            .forEach(index -> {
+              Person person = people.get(index);
+              System.out.println(person);
+            });
 
+    people.forEach(System.out::println);
   }
 
   @Test

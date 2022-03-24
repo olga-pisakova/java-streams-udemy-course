@@ -24,13 +24,22 @@ public class Lecture10 {
   @Test
   public void withoutFlatMap() throws Exception {
 //    [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
-
+    ArrayList<String> listOfNames = arrayListOfNames.stream()
+            .reduce((list1, list2) -> {
+              list1.addAll(list2);
+              return list1;
+            })
+            .get();
+    System.out.println(listOfNames);
   }
 
   @Test
   public void withFlatMap() throws Exception {
 //   [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
-
+    List<String> names = arrayListOfNames.stream()
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
+    System.out.println(names);
   }
 
 }
